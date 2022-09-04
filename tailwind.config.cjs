@@ -8,7 +8,28 @@ module.exports = {
 			lg: '976px',
 			xl: '1440px',
 		},
-		extend: {},
+		colors: {
+			'beau_blue': '#C7D3DD',
+			'mint': '#BAF2D8',
+			'silver_chalice': "#ABADA9"
+		},
+	},
+	daisyui: {
+		themes: [
+		  {
+			baseTheme: {
+	   			"primary": "#e2ce5a",
+	   			"secondary": "#0d1fa8",
+	   			"accent": "#4ce0af",	
+	   			"neutral": "#1C1C1C",	
+	   			"base-100": "#343534",
+	   			"info": "#78CBE2",
+	   			"success": "#1BC565",	
+	   			"warning": "#F58B0A",
+	   			"error": "#F21C2E",
+				},
+			},
+		],
 	},
 	plugins: [require('daisyui')],
 }

@@ -7,7 +7,7 @@
 
 @Layer components {
     .philo {
-        @apply text-lg text-slate-50;
+        @apply text-lg;
     }
 
     .title {
