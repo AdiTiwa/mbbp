@@ -1,0 +1,20 @@
+---
+export interface Props {
+    title: string;
+    color?: string; 
+}
+
+const { title, color="blue-500" } = Astro.props;
+---
+
+<div class="card w-96 text-primary-content">
+  <div class="card-body grid grid-cols-2">
+    <div>
+        <h2 class="card-title">{title}</h2>
+        <p><slot /></p>
+    </div>
+    <div class="card-actions justify-end">
+      <button class="btn">Read more</button>
+    </div>
+  </div>
+</div>
