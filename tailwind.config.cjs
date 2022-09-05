@@ -11,7 +11,9 @@ module.exports = {
 		colors: {
 			'beau_blue': '#C7D3DD',
 			'mint': '#BAF2D8',
-			'silver_chalice': "#ABADA9"
+			'silver_chalice': "#ABADA9",
+			'tan': "#D4B483",
+			
 		},
 	},
 	daisyui: {
