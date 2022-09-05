@@ -1,0 +1,9 @@
+---
+import { getCollectionSnapshot, returnDocMap, getDocMapFromCollection } from '../firebase'
+
+const documents = await getDocMapFromCollection('users')
+
+console.log(documents)
+---
+
+{documents[0]["username"]}

@@ -1,47 +1,35 @@
 import { initializeApp } from 'firebase/app';
-let
-  resolve,
-  firebaseInstance,
-  firestoreInstance
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBR3d_ndeIBTSodCxAz4oofivbTU7Fjy9Q",
-    authDomain: "philoapp-77b03.firebaseapp.com",
-    databaseURL: "https://philoapp-77b03-default-rtdb.firebaseio.com",
-    projectId: "philoapp-77b03",
-    storageBucket: "philoapp-77b03.appspot.com",
-    messagingSenderId: "893275799967",
-    appId: "1:893275799967:web:6633e25241350951473daa",
-    measurementId: "G-PFWQ71TMKF"
-};
-
-const promise = new Promise(res => resolve = res)
-
-export async function initialize() {
-    if (firebaseInstance) return firebaseInstance
-
-    firebaseInstance = initializeApp(firebaseConfig)
-    resolve(firebaseInstance)
-    return firebaseInstance
+    apiKey: process.env.apiKey,
+    authDomain: process.env.authDomain,
+    databaseURL: process.env.databaseURL,
+    projectId: process.env.projectId,
+    storageBucket: process.env.storageBucket,
+    messagingSenderId: process.env.messagingSenderId,
+    appId: process.env.appId,
+    measurementId: process.env.measurementId
 }
 
-export async function getInstance () {
-    if (firebaseInstance) return firebaseInstance
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-    return promise
+// Get a list of cities from your database
+export async function getCollectionSnapshot(collectionName = "users") {
+    const col = collection(db, collectionName);
+    const snapshot = await getDocs(col);
+    return snapshot;
 }
 
-export async function getFirestore() {
-    if (firestoreInstance) return firestoreInstance
-
-    const { getFirestore } = import('firebase/firestore')
-    await getInstance()
-    firestoreInstance = getFirestore()
-    return firestoreInstance
+export async function returnDocMap(snapshot) {
+    return await snapshot.docs.map(doc => doc.data())
 }
 
-export default {
-    initialize,
-    getInstance,
-    getFirestore,
-}
+export async function getDocMapFromCollection(collectionName = "users") {
+    const col = collection(db, collectionName)
+    const snapshot = await getDocs(col)
+    return await snapshot.docs.map(doc => doc.data())
