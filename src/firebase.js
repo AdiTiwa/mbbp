@@ -33,3 +33,4 @@ export async function getDocMapFromCollection(collectionName = "users") {
     const col = collection(db, collectionName)
     const snapshot = await getDocs(col)
     return await snapshot.docs.map(doc => doc.data())
+}
